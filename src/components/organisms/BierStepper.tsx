@@ -1,13 +1,17 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography'
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Check from '@mui/icons-material/Check';
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { StepIconProps } from '@mui/material/StepIcon';
+import StepConnector, {stepConnectorClasses} from '@mui/material/StepConnector';
+import {StepIconProps} from '@mui/material/StepIcon';
+import MaischePfanneBox from "../molecules/MaischePfanneBox";
+import {BeerType} from "../../models/BeerType";
+import {Box, Card} from "@mui/material";
+import SecondStepBox from "../molecules/SecondStepBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -68,12 +72,17 @@ function QontoStepIcon(props: StepIconProps) {
         </QontoStepIconRoot>
     );
 }
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+const steps = ['Maischepfanne', 'Läuterbottich', 'step3'];
 
 export default function BierStepper(){
+    const [activeStep, setActiveStep] = React.useState(0);
+    const nextStep = () => {
+        setActiveStep(activeStep + 1);
+    }
     return (
-        <Stack sx={{ width: '80%' }} spacing={4}>
-            <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
+        <React.Fragment>
+        <Stack sx={{ width: '100%', height: "7vh" }}>
+            <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={QontoStepIcon}>
@@ -82,5 +91,24 @@ export default function BierStepper(){
                 ))}
             </Stepper>
         </Stack>
+            <React.Fragment>
+                <Box sx={{height: "48vh", mt: "2vh", width: "80%", alignItems: "right", float: "right", mr: 5}}>
+                    <Card sx={{bgcolor: "#1c1c1c", pt: 2, pb: 3}}>
+                {_renderSteps(activeStep, nextStep)}
+                    </Card>
+                </Box>
+            </React.Fragment>
+        </React.Fragment>
 );
+}
+
+function _renderSteps(step: number, setNextStep: Function) {
+    switch (step){
+        case 0:
+            return <MaischePfanneBox malz={BeerType.DUNKEL} setNextStep={setNextStep}/>
+        case 1:
+            return <SecondStepBox setNextStep={setNextStep}/>
+        default:
+            return <div>Not Found</div>;
+    }
 }

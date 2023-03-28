@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
-import {Box} from "@mui/material";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {Box, Grid} from "@mui/material";
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid} from 'recharts';
+import Typography from "@mui/material/Typography";
 
 const dataBierTypes = [
     {
         name: 'Weizen',
-        uv:80,
-        pv:80,
-        amt:80,
+        uv:89,
+        pv:89,
+        amt:89,
     },
     {
         name: 'Dunkel',
@@ -48,39 +49,46 @@ const dataHopfenTypes = [
 export default function LagerDiagramm(){
     return(
         <Box>
-                <BarChart
-                    width={200} height={300}
-                    data={dataBierTypes}
-                    margin={{
-                        top: 0,
-                        right: 0,
-                        left: 0,
-                        bottom: 0,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Legend />
-                    <Bar dataKey="pv" fill="#a2ff7d" />
-                </BarChart>
-            <BarChart
-                width={200}
-                height={300}
-                data={dataHopfenTypes}
-                margin={{
-                    top: 0,
-                    right: 0,
-                    left: 0,
-                    bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Legend />
-                <Bar dataKey="pv" fill="#f9ff7d" />
-            </BarChart>
+            <Grid container>
+                <Grid item xs={12} md={12} lg={12} sx={{textAlign: "center", pb: 3}}>
+                    <Typography variant="body1" sx={{fontSize: "20px", fontWeight: "bold", color: "#fff"}}>Lagerbestand:</Typography>
+                </Grid>
+                <Grid item xs={6} md={6} lg={6}>
+                    <BarChart
+                        width={270} height={320}
+                        data={dataBierTypes}
+                        margin={{
+                            top: 0,
+                            right: 0,
+                            left: 2,
+                            bottom: 0,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Bar dataKey="pv" fill="#f9ff7d" />
+                    </BarChart>
+                </Grid>
+                <Grid item xs={6} md={6} lg={6}>
+                    <BarChart
+                        width={270}
+                        height={320}
+                        data={dataHopfenTypes}
+                        margin={{
+                            top: 0,
+                            right: 0,
+                            left: 2,
+                            bottom: 0,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Bar dataKey="pv" fill="#a2ff7d" />
+                    </BarChart>
+                </Grid>
+            </Grid>
         </Box>
     )
 }
