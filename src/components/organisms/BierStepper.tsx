@@ -92,9 +92,9 @@ export default function BierStepper(){
             </Stepper>
         </Stack>
             <React.Fragment>
-                <Box sx={{height: "48vh", mt: "2vh", width: "80%", alignItems: "right", float: "right", mr: 5}}>
-                    <Card sx={{bgcolor: "#1c1c1c", pt: 2, pb: 3}}>
-                {_renderSteps(activeStep, nextStep)}
+                <Box sx={{height: "48vh", mt: "2vh", width: "50vw", float: "center", ml: "25vw", mr: "25vw"}}>
+                    <Card sx={{bgcolor: "#292929", pt: 2, pb: 3}}>
+                {renderSteps(activeStep, nextStep)}
                     </Card>
                 </Box>
             </React.Fragment>
@@ -102,7 +102,7 @@ export default function BierStepper(){
 );
 }
 
-function _renderSteps(step: number, setNextStep: Function) {
+function renderSteps(step: number, setNextStep: Function) {
     switch (step){
         case 0:
             return <MaischePfanneBox malz={BeerType.DUNKEL} setNextStep={setNextStep}/>
