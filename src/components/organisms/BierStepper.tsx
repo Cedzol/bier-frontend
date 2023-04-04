@@ -1,114 +1,160 @@
-import * as React from 'react';
-import {styled} from '@mui/material/styles';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography'
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Check from '@mui/icons-material/Check';
-import StepConnector, {stepConnectorClasses} from '@mui/material/StepConnector';
-import {StepIconProps} from '@mui/material/StepIcon';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Check from "@mui/icons-material/Check";
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+import { StepIconProps } from "@mui/material/StepIcon";
 import MaischePfanneBox from "../molecules/MaischePfanneBox";
-import {BeerType} from "../../models/BeerType";
-import {Box, Card} from "@mui/material";
+import { BeerType } from "../../models/BeerType";
+import { Box, Card } from "@mui/material";
 import SecondStepBox from "../molecules/SecondStepBox";
+import SecondStepControllBox from "../molecules/SecondStepControllBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
-    [`&.${stepConnectorClasses.alternativeLabel}`]: {
-        top: 10,
-        left: 'calc(-50% + 16px)',
-        right: 'calc(50% + 16px)',
-    },
-    [`&.${stepConnectorClasses.active}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            borderColor: '#fcca27',
-        },
-    },
-    [`&.${stepConnectorClasses.completed}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            borderColor: '#fcca27',
-        },
-    },
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 10,
+    left: "calc(-50% + 16px)",
+    right: "calc(50% + 16px)",
+  },
+  [`&.${stepConnectorClasses.active}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-        borderColor: '#eaeaf0',
-        borderTopWidth: 3,
-        borderRadius: 1,
+      borderColor: "#fcca27",
     },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: "#fcca27",
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor: "#eaeaf0",
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
 }));
 
-const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(
-    ({ theme, ownerState }) => ({
-        color: '#eaeaf0',
-        display: 'flex',
-        height: 22,
-        alignItems: 'center',
-        ...(ownerState.active && {
-            color: '#fcca27',
-        }),
-        '& .QontoStepIcon-completedIcon': {
-            color: '#fcca27',
-            zIndex: 1,
-            fontSize: 18,
-        },
-        '& .QontoStepIcon-circle': {
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            backgroundColor: 'currentColor',
-        },
+const QontoStepIconRoot = styled("div")<{ ownerState: { active?: boolean } }>(
+  ({ theme, ownerState }) => ({
+    color: "#eaeaf0",
+    display: "flex",
+    height: 22,
+    alignItems: "center",
+    ...(ownerState.active && {
+      color: "#fcca27",
     }),
+    "& .QontoStepIcon-completedIcon": {
+      color: "#fcca27",
+      zIndex: 1,
+      fontSize: 18,
+    },
+    "& .QontoStepIcon-circle": {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      backgroundColor: "currentColor",
+    },
+  })
 );
 
 function QontoStepIcon(props: StepIconProps) {
-    const { active, completed, className } = props;
+  const { active, completed, className } = props;
 
-    return (
-        <QontoStepIconRoot ownerState={{ active }} className={className}>
-            {completed ? (
-                <Check className="QontoStepIcon-completedIcon" />
-            ) : (
-                <div className="QontoStepIcon-circle" />
-            )}
-        </QontoStepIconRoot>
-    );
+  return (
+    <QontoStepIconRoot ownerState={{ active }} className={className}>
+      {completed ? (
+        <Check className="QontoStepIcon-completedIcon" />
+      ) : (
+        <div className="QontoStepIcon-circle" />
+      )}
+    </QontoStepIconRoot>
+  );
 }
-const steps = ['Maischepfanne', 'Läuterbottich', 'step3'];
+const steps = [
+  "Maischepfanne",
+  "Läuterbottich",
+  "Würze Kontrollieren",
+  "Step4",
+];
 
-export default function BierStepper(){
-    const [activeStep, setActiveStep] = React.useState(0);
-    const nextStep = () => {
-        setActiveStep(activeStep + 1);
+export default function BierStepper() {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const nextStep = () => {
+    setActiveStep(activeStep + 1);
+  };
+  const lastStep = () => {
+    if (activeStep !== 0) {
+      setActiveStep(activeStep - 1);
     }
-    return (
-        <React.Fragment>
-        <Stack sx={{ width: '100%', height: "7vh" }}>
-            <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
-                {steps.map((label) => (
-                    <Step key={label}>
-                        <StepLabel StepIconComponent={QontoStepIcon}>
-                            <Typography variant="body2" sx={{color: "#fff", fontSize: "14px"}}>{label}</Typography></StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
-        </Stack>
-            <React.Fragment>
-                <Box sx={{height: "48vh", mt: "2vh", width: "50vw", float: "center", ml: "25vw", mr: "25vw"}}>
-                    <Card sx={{bgcolor: "#292929", pt: 2, pb: 3}}>
-                {renderSteps(activeStep, nextStep)}
-                    </Card>
-                </Box>
-            </React.Fragment>
-        </React.Fragment>
-);
+  };
+
+  return (
+    <React.Fragment>
+      <Stack sx={{ width: "100%", height: "7vh" }}>
+        <Stepper
+          alternativeLabel
+          activeStep={activeStep}
+          connector={<QontoConnector />}
+        >
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel StepIconComponent={QontoStepIcon}>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#fff", fontSize: "14px" }}
+                >
+                  {label}
+                </Typography>
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Stack>
+      <React.Fragment>
+        <Box
+          sx={{
+            height: "48vh",
+            mt: "2vh",
+            width: "50vw",
+            float: "center",
+            ml: "25vw",
+            mr: "25vw",
+          }}
+        >
+          <Card sx={{ bgcolor: "#292929", pt: 2, pb: 3 }}>
+            {renderSteps(activeStep, nextStep, lastStep)}
+          </Card>
+        </Box>
+      </React.Fragment>
+    </React.Fragment>
+  );
 }
 
-function renderSteps(step: number, setNextStep: Function) {
-    switch (step){
-        case 0:
-            return <MaischePfanneBox malz={BeerType.DUNKEL} setNextStep={setNextStep}/>
-        case 1:
-            return <SecondStepBox setNextStep={setNextStep}/>
-        default:
-            return <div>Not Found</div>;
-    }
+function renderSteps(
+  step: number,
+  setNextStep: Function,
+  setLastStep: Function
+) {
+  switch (step) {
+    case 0:
+      return (
+        <MaischePfanneBox malz={BeerType.DUNKEL} setNextStep={setNextStep} />
+      );
+    case 1:
+      return <SecondStepBox setNextStep={setNextStep} />;
+    case 2:
+      return (
+        <SecondStepControllBox
+          setNextStep={setNextStep}
+          setLastStep={setLastStep}
+        />
+      );
+    default:
+      return <div>Not Found</div>;
+  }
 }
