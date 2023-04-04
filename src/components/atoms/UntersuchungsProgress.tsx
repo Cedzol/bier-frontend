@@ -38,7 +38,7 @@ export default function UntersuchungsProgress({
 
   React.useEffect(() => {
     if (query === "success") {
-      const randomResult = Math.floor(Math.random() * 100);
+      const randomResult = Math.floor(Math.random() * 10);
       if (randomResult === 1 || randomResult === 2) {
         setIsSucess(false);
         setSuccess(false);
@@ -61,7 +61,10 @@ export default function UntersuchungsProgress({
     >
       <Grid container>
         <Grid item xs={5} sx={{ textAlign: "left", justifyContent: "center" }}>
-          <Typography variant="body1" sx={{ fontSize: "16px", color: "#fff" }}>
+          <Typography
+            variant="body1"
+            sx={{ fontSize: "16px", color: "#fff", pl: 2 }}
+          >
             {text}
           </Typography>
         </Grid>
@@ -73,7 +76,7 @@ export default function UntersuchungsProgress({
         <Grid item xs={6}>
           <HighlightOffIcon
             sx={{
-              color: isSuccess && query === "success" ? "#737373" : "#ff0000",
+              color: isSuccess || query !== "success" ? "#737373" : "#ff0000",
             }}
           />
         </Grid>
