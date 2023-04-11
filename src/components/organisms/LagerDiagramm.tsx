@@ -44,13 +44,13 @@ export default function LagerDiagramm({
         </Grid>
         <Grid item xs={6} md={6} lg={6}>
           <BarChart
-            width={270}
+            width={280}
             height={320}
             data={hopfenData}
             margin={{
               top: 0,
               right: 0,
-              left: 2,
+              left: 1,
               bottom: 0,
             }}
           >

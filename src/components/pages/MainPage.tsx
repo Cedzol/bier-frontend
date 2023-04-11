@@ -59,18 +59,20 @@ export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
       <Grid container sx={{ height: "90vh" }}>
         <Grid item md={12}></Grid>
         <Grid item md={12} sx={{ height: "57vh" }}>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: "#fff",
-              ml: "5vw",
-              mb: "2vh",
-            }}
-          >
-            Brau-Prozess:
-          </Typography>
+          <Box sx={{ bgcolor: "rgba(252, 202, 39, 0.7)", pt: 2, pb: 2, mb: 2 }}>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: "20px",
+                fontWeight: "bold",
+                color: "#fff",
+                ml: "5vw",
+                float: "center",
+              }}
+            >
+              Ausgewählte Biersorte: {selectedBeerType}
+            </Typography>
+          </Box>
           <BierStepper />
         </Grid>
         <Grid item md={4} sx={{ height: "33vh" }}>
