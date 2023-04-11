@@ -117,19 +117,3 @@ export function Brewmaster() {
     </Box>
   );
 }
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    color: "#fff",
-  },
-  "& .MuiInputBase-input": {
-    borderRadius: 4,
-    border: "1px solid #fff",
-    fontSize: 16,
-    transition: theme.transitions.create(["border-color"]),
-    // Use the system font instead of the default Roboto font.
-    "&:focus": {
-      borderColor: "#fcca27",
-    },
-  },
-}));
