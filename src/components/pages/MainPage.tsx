@@ -4,8 +4,13 @@ import BierStepper from "../organisms/BierStepper";
 import LagerDiagramm from "../organisms/LagerDiagramm";
 import Typography from "@mui/material/Typography";
 import { DiagrammType } from "../../models/DiagrammType";
+import { BeerType } from "../../models/BeerType";
 
-export default function MainPage() {
+type MainPageProcessProps = {
+  selectedBeerType: BeerType | any | string;
+};
+
+export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
   const [malzData, setMalzData] = useState<DiagrammType[]>([
     {
       name: "Weizen",

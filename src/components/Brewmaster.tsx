@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { BeerType } from "../assets/BeerType";
 import MainPage from "./pages/MainPage";
+import { BeerType } from "../models/BeerType";
 import { Box } from "@mui/material";
 
 export function Brewmaster() {
-  const [beerType, setBeerType]: any = useState(BeerType.Lager);
+  const [beerType, setBeerType]: any = useState(BeerType.LAGER);
   const [showBeerSelection, setShowBeerSelection] = useState(true);
 
   function changeBeerType() {
@@ -23,9 +23,9 @@ export function Brewmaster() {
       {showBeerSelection ? (
         <div>
           <select id={"beerTypeSelect"} onChange={changeBeerType}>
-            <option value={BeerType.Dunkel}>Dunkel</option>
-            <option value={BeerType.Lager}>Lager</option>
-            <option value={BeerType.Weizen}>Weizen</option>
+            <option value={BeerType.DUNKEL}>Dunkel</option>
+            <option value={BeerType.LAGER}>Lager</option>
+            <option value={BeerType.WEIZEN}>Weizen</option>
           </select>
           <br></br>
           <button onClick={startProccess}>Start Prozesss</button>
@@ -39,7 +39,7 @@ export function Brewmaster() {
             overflow: "hidden",
           }}
         >
-          <MainPage />
+          <MainPage selectedBeerType={beerType} />
         </Box>
       )}
     </div>
