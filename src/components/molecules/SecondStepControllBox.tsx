@@ -23,7 +23,7 @@ export default function SecondStepControllBox({
     if (isAbgepumpt) {
       timerRef.current = window.setTimeout(() => {
         setNextStep();
-      }, 8000);
+      }, 3000);
     }
   }, [isAbgepumpt]);
 
