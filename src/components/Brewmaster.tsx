@@ -9,10 +9,8 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
-  InputBase,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 
 export function Brewmaster() {
   const [beerType, setBeerType]: any = useState(BeerType.LAGER);
