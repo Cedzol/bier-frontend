@@ -19,7 +19,6 @@ export function Brewmaster() {
 
   function changeBeerType(newSelected: SelectChangeEvent) {
     let select: any = newSelected.target.value;
-    console.log("beertype changed");
     setBeerType(select);
   }
 

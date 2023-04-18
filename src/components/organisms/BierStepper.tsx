@@ -15,6 +15,8 @@ import { BeerType } from "../../models/BeerType";
 import { Box, Card } from "@mui/material";
 import SecondStepBox from "../molecules/SecondStepBox";
 import SecondStepControllBox from "../molecules/SecondStepControllBox";
+import HopfenAuswahlBox from "../molecules/HopfenAuswahlBox";
+import { HopfenType } from "../../models/HopfenType";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -79,7 +81,8 @@ const steps = [
   "Maischepfanne",
   "Läuterbottich",
   "Würze Kontrollieren",
-  "Step4",
+  "Hopfen-Sorte auswählen",
+  "Step5",
 ];
 
 type BeerStepperProps = {
@@ -88,6 +91,9 @@ type BeerStepperProps = {
 
 export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [selectedHopfen, setSelectedHopfen] = React.useState(
+    HopfenType.CASCADE
+  );
   const nextStep = () => {
     setActiveStep(activeStep + 1);
   };
@@ -131,7 +137,13 @@ export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
           }}
         >
           <Card sx={{ bgcolor: "#292929", pt: 2, pb: 3 }}>
-            {renderSteps(activeStep, nextStep, lastStep, selectedBeerType)}
+            {renderSteps(
+              activeStep,
+              nextStep,
+              lastStep,
+              selectedBeerType,
+              setSelectedHopfen
+            )}
           </Card>
         </Box>
       </React.Fragment>
@@ -143,7 +155,8 @@ function renderSteps(
   step: number,
   setNextStep: Function,
   setLastStep: Function,
-  selectedBeerType: BeerType
+  selectedBeerType: BeerType,
+  setSelectedHopfen: Function
 ) {
   switch (step) {
     case 0:
@@ -157,6 +170,13 @@ function renderSteps(
         <SecondStepControllBox
           setNextStep={setNextStep}
           setLastStep={setLastStep}
+        />
+      );
+    case 3:
+      return (
+        <HopfenAuswahlBox
+          setNextStep={setNextStep}
+          saveSelectedHopfen={setSelectedHopfen}
         />
       );
     default:
