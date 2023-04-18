@@ -73,7 +73,7 @@ export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
               Ausgewählte Biersorte: {selectedBeerType}
             </Typography>
           </Box>
-          <BierStepper />
+          <BierStepper selectedBeerType={selectedBeerType} />
         </Grid>
         <Grid item md={4} sx={{ height: "33vh" }}>
           <LagerDiagramm malzData={malzData} hopfenData={hopfenData} />

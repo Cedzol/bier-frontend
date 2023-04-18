@@ -4,6 +4,14 @@ import Typography from "@mui/material/Typography";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
 import UntersuchungsProgress from "../atoms/UntersuchungsProgress";
 
+/**
+ * @Step 3
+ *
+ * @Tasks:
+ * 1.) Kontrolle (Ist Maisch klar)
+ * 2.) Maische abpumen / oder nichts
+ */
+
 type SecondStepControllType = {
   setNextStep: Function;
   setLastStep: Function;

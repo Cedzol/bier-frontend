@@ -82,7 +82,11 @@ const steps = [
   "Step4",
 ];
 
-export default function BierStepper() {
+type BeerStepperProps = {
+  selectedBeerType: BeerType;
+};
+
+export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const nextStep = () => {
     setActiveStep(activeStep + 1);
@@ -127,7 +131,7 @@ export default function BierStepper() {
           }}
         >
           <Card sx={{ bgcolor: "#292929", pt: 2, pb: 3 }}>
-            {renderSteps(activeStep, nextStep, lastStep)}
+            {renderSteps(activeStep, nextStep, lastStep, selectedBeerType)}
           </Card>
         </Box>
       </React.Fragment>
@@ -138,12 +142,13 @@ export default function BierStepper() {
 function renderSteps(
   step: number,
   setNextStep: Function,
-  setLastStep: Function
+  setLastStep: Function,
+  selectedBeerType: BeerType
 ) {
   switch (step) {
     case 0:
       return (
-        <MaischePfanneBox malz={BeerType.DUNKEL} setNextStep={setNextStep} />
+        <MaischePfanneBox malz={selectedBeerType} setNextStep={setNextStep} />
       );
     case 1:
       return <SecondStepBox setNextStep={setNextStep} />;

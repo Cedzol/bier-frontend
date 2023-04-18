@@ -1,0 +1,18 @@
+Used colors:
+
+- Button : "#6dad53"
+- Diagram Malz : "#f9ff7d"
+- Diagramm Hopfen : "#a2ff7d"
+- Main Color : "#fcca27"
+- Steps Background Color : "#292929"
+- Page Background Color : "#191919"
+- Text Color : "#fff"
+
+- Blue Loader : "#0080ff"
+- Yellow Loader : "#f9ff7d"
+- Orange Loader : "#fca708"
+- Progress Icons Green : #a2ff7d
+- Progress Icons Grey : "#737373"
+- Progress Icons Red : "#ff0000"
+
+- App Bar : "rgba(252, 202, 39, 0.7)"

@@ -64,26 +64,3 @@ export default function LagerDiagramm({
     </Box>
   );
 }
-
-/**
- *        <ResponsiveContainer width="100%" height="100%">
- *                 <BarChart
- *                     width={100}
- *                     height={50}
- *                     data={dataHopfenTypes}
- *                     margin={{
- *                         top: 0,
- *                         right: 0,
- *                         left: 0,
- *                         bottom: 0,
- *                     }}
- *                 >
- *                     <CartesianGrid strokeDasharray="3 3" />
- *                     <XAxis dataKey="name" />
- *                     <YAxis />
- *                     <Tooltip />
- *                     <Legend />
- *                     <Bar dataKey="pv" fill="#f9ff7d" />
- *                 </BarChart>
- *             </ResponsiveContainer>
- */

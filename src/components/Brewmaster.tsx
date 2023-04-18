@@ -8,6 +8,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Button,
   SelectChangeEvent,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -86,16 +87,23 @@ export function Brewmaster() {
                   <MenuItem value={BeerType.WEIZEN}>Weizen</MenuItem>
                 </Select>
               </FormControl>
-              <button
+              <Button
                 onClick={startProccess}
                 disabled={
                   beerType !== BeerType.DUNKEL &&
                   beerType !== BeerType.LAGER &&
                   beerType !== BeerType.WEIZEN
                 }
+                sx={{
+                  bgcolor: "#6dad53",
+                  color: "#fff",
+                  width: "75%",
+                  ml: "12.5%",
+                  mr: "12.5%",
+                }}
               >
                 Start Prozesss
-              </button>
+              </Button>
             </Box>
           </Card>
           <br></br>

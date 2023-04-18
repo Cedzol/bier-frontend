@@ -59,7 +59,11 @@ export default function LoadingProgressNormal({
             <CheckBoxOutlineBlankIcon sx={{ color: "#a2ff7d" }} />
           )}
         </Grid>
-        <Grid item xs={5} sx={{ textAlign: "left", justifyContent: "center" }}>
+        <Grid
+          item
+          xs={5}
+          sx={{ textAlign: "left", justifyContent: "center", pr: 2 }}
+        >
           <Typography variant="body1" sx={{ fontSize: "16px", color: "#fff" }}>
             {text}
           </Typography>
