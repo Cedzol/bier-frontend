@@ -17,6 +17,7 @@ import SecondStepBox from "../molecules/SecondStepBox";
 import SecondStepControllBox from "../molecules/SecondStepControllBox";
 import HopfenAuswahlBox from "../molecules/HopfenAuswahlBox";
 import { HopfenType } from "../../models/HopfenType";
+import WürzepfanneBox from "../molecules/WürzespfanneBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -82,7 +83,8 @@ const steps = [
   "Läuterbottich",
   "Würze Kontrollieren",
   "Hopfen-Sorte auswählen",
-  "Step5",
+  "Würzepfanne",
+  "Step6",
 ];
 
 type BeerStepperProps = {
@@ -142,7 +144,8 @@ export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
               nextStep,
               lastStep,
               selectedBeerType,
-              setSelectedHopfen
+              setSelectedHopfen,
+              selectedHopfen
             )}
           </Card>
         </Box>
@@ -156,7 +159,8 @@ function renderSteps(
   setNextStep: Function,
   setLastStep: Function,
   selectedBeerType: BeerType,
-  setSelectedHopfen: Function
+  setSelectedHopfen: Function,
+  hopfen: HopfenType
 ) {
   switch (step) {
     case 0:
@@ -179,6 +183,8 @@ function renderSteps(
           saveSelectedHopfen={setSelectedHopfen}
         />
       );
+    case 4:
+      return <WürzepfanneBox setNextStep={setNextStep} hopfen={hopfen} />;
     default:
       return <div>Not Found</div>;
   }
