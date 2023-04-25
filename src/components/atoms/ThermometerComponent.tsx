@@ -15,8 +15,6 @@ const styles = {
     width: `auto`,
     height: `auto`,
     color: "#000",
-    border: "0.5px solid #fff",
-    padding: "2px",
   },
   title: {
     fontSize: "1em",
@@ -31,27 +29,20 @@ export default function ({
   text,
 }: ThermometerComponentProps) {
   const [temperatur, setTemperatur] = useState(startTemperatur);
-  const [query, setQuery] = React.useState("idle");
   const timerRef = React.useRef<number>();
   useEffect(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
-
-    if (query !== "idle") {
-      setQuery("idle");
-      return;
-    }
-
-    setQuery("progress");
-    timerRef.current = window.setTimeout(() => {
-      setTemperatur(temperatur + 1);
-    }, 100);
   }, []);
 
   useEffect(() => {
     if (temperatur === endTemperatur) {
       setIsDone(true);
+    } else {
+      timerRef.current = window.setTimeout(() => {
+        setTemperatur(temperatur + 1);
+      }, 100);
     }
   }, [temperatur]);
 
@@ -71,7 +62,7 @@ export default function ({
               loader={<div></div>}
               data={[
                 ["Label", "Value"],
-                ["Temperatur", Number(temperatur)],
+                ["Temperatur", temperatur],
               ]}
               options={{
                 redFrom: 90,
