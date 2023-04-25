@@ -5,12 +5,14 @@ import LagerDiagramm from "../organisms/LagerDiagramm";
 import Typography from "@mui/material/Typography";
 import { DiagrammType } from "../../models/DiagrammType";
 import { BeerType } from "../../models/BeerType";
+import AppHeader from "../atoms/AppHeader";
 
 type MainPageProcessProps = {
   selectedBeerType: BeerType | any | string;
 };
 
 export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
+  const [hopfen, setHopfen] = useState("");
   const [malzData, setMalzData] = useState<DiagrammType[]>([
     {
       name: "Weizen",
@@ -57,23 +59,14 @@ export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
       }}
     >
       <Grid container sx={{ height: "90vh" }}>
-        <Grid item md={12}></Grid>
+        <Grid item md={12}>
+          <AppHeader malz={selectedBeerType} hopfen={hopfen} />
+        </Grid>
         <Grid item md={12} sx={{ height: "57vh" }}>
-          <Box sx={{ bgcolor: "rgba(252, 202, 39, 0.7)", pt: 2, pb: 2, mb: 2 }}>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: "20px",
-                fontWeight: "bold",
-                color: "#fff",
-                ml: "5vw",
-                float: "center",
-              }}
-            >
-              Ausgewählte Biersorte: {selectedBeerType}
-            </Typography>
-          </Box>
-          <BierStepper selectedBeerType={selectedBeerType} />
+          <BierStepper
+            selectedBeerType={selectedBeerType}
+            setHopfen={setHopfen}
+          />
         </Grid>
         <Grid item md={4} sx={{ height: "33vh" }}>
           <LagerDiagramm malzData={malzData} hopfenData={hopfenData} />

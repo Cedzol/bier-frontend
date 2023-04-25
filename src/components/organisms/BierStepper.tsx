@@ -89,13 +89,17 @@ const steps = [
 
 type BeerStepperProps = {
   selectedBeerType: BeerType;
+  setHopfen: Function;
 };
 
-export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
+export default function BierStepper({
+  selectedBeerType,
+  setHopfen,
+}: BeerStepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [selectedHopfen, setSelectedHopfen] = React.useState(
-    HopfenType.CASCADE
-  );
+  const [selectedHopfen, setSelectedHopfen] = React.useState<
+    HopfenType | string
+  >(HopfenType.CASCADE);
   const nextStep = () => {
     setActiveStep(activeStep + 1);
   };
@@ -104,6 +108,12 @@ export default function BierStepper({ selectedBeerType }: BeerStepperProps) {
       setActiveStep(activeStep - 1);
     }
   };
+
+  React.useEffect(() => {
+    if (activeStep > 3) {
+      setHopfen(selectedHopfen);
+    }
+  }, [selectedHopfen]);
 
   return (
     <React.Fragment>
@@ -160,7 +170,7 @@ function renderSteps(
   setLastStep: Function,
   selectedBeerType: BeerType,
   setSelectedHopfen: Function,
-  hopfen: HopfenType
+  hopfen: HopfenType | string
 ) {
   switch (step) {
     case 0:

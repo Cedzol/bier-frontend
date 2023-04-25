@@ -11,51 +11,49 @@ type AppHeaderProps = {
 
 export default function AppHeader({ malz, hopfen }: AppHeaderProps) {
   return (
-    <Box sx={{ bgcolor: "rgba(255, 255, 255, 0.7)", pt: 2, pb: 2, mb: 2 }}>
+    <Box
+      sx={{
+        bgcolor: "rgba(255, 255, 255, 0.3)",
+        pt: 1,
+        pb: 2,
+        height: "9vh",
+      }}
+    >
       <Grid container>
-        <Grid item xs={2} md={2} lg={2}></Grid>
-        <Grid item xs={10} md={10} lg={10}>
-          <List>
+        <Grid item xs={0.6} md={0.6} lg={0.6}>
+          <img
+            src="./images/img.png"
+            style={{ width: "100%", marginLeft: 2 }}
+          />
+        </Grid>
+        <Grid item xs={11} md={11} lg={11} sx={{ height: "9vh" }}>
+          <List sx={{ height: "9vh", padding: 0 }}>
             <ListItem>
               <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#191919",
-                  ml: "2vw",
-                  float: "left",
-                }}
-              >
-                Braue dein Bier
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography
-                variant="body1"
+                variant="body2"
                 sx={{
                   fontSize: "18px",
                   fontWeight: "bold",
                   color: "#f9ff7d",
-                  ml: "2vw",
+                  ml: "1vw",
                   float: "left",
                 }}
               >
-                {malz}
+                Malz: {malz}
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
-                variant="body1"
+                variant="body2"
                 sx={{
                   fontSize: "18px",
                   fontWeight: "bold",
                   color: "#a2ff7d",
-                  ml: "2vw",
+                  ml: "1vw",
                   float: "left",
                 }}
               >
-                {hopfen}
+                Hopfen: {hopfen}
               </Typography>
             </ListItem>
           </List>

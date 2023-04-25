@@ -17,7 +17,7 @@ import ThermometerComponent from "../atoms/ThermometerComponent";
 
 type WürzespfanneBoxType = {
   setNextStep: Function;
-  hopfen: HopfenType;
+  hopfen: HopfenType | string;
 };
 
 export default function WürzepfanneBox({
