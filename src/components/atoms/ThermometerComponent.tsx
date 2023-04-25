@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Thermometer from "react-thermometer";
+import { Chart } from "react-google-charts";
 
 type ThermometerComponentProps = {
   endTemperatur: number;
@@ -9,8 +9,7 @@ type ThermometerComponentProps = {
 
 const styles = {
   dial: {
-    display: "inline-block",
-    width: `300px`,
+    width: `auto`,
     height: `auto`,
     color: "#000",
     border: "0.5px solid #fff",
@@ -19,7 +18,6 @@ const styles = {
   title: {
     fontSize: "1em",
     color: "#000",
-    marginTop: "15px",
   },
 };
 
@@ -55,17 +53,25 @@ export default function ({
 
   return (
     <div style={styles.dial}>
-      <Thermometer
-        theme="light"
-        value={temperatur}
-        max="100"
-        steps="1"
-        format="°C"
-        size="normal"
-        height="180"
-      />
-      <div style={styles.title}>
-        {}: {value}°C
+      <div style={styles.dial}>
+        <Chart
+          height={120}
+          chartType="Gauge"
+          loader={<div></div>}
+          data={[
+            ["Label", "Value"],
+            ["Temperatur", Number(temperatur)],
+          ]}
+          options={{
+            redFrom: 90,
+            redTo: 200,
+            yellowFrom: 50,
+            yellowTo: 90,
+            minorTicks: 5,
+            min: -10,
+            max: 300,
+          }}
+        />
       </div>
     </div>
   );
