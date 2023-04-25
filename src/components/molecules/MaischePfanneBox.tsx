@@ -3,6 +3,7 @@ import { BeerType } from "../../models/BeerType";
 import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
+import StepperBoxTitle from "../atoms/StepperBoxTitle";
 
 /**
  * @Step 1
@@ -36,12 +37,7 @@ export default function MaischePfanneBox({
     <Box>
       <Grid container>
         <Grid item xs={12} md={12} lg={12} sx={{ textAlign: "center", pb: 5 }}>
-          <Typography
-            variant="body1"
-            sx={{ fontSize: "20px", fontWeight: "bold", color: "#fff" }}
-          >
-            Maische wird hergestellt
-          </Typography>
+          <StepperBoxTitle title="Maische wird hergestellt" />
         </Grid>
         <Grid item xs={4} md={4} lg={4} sx={{ pl: 3 }}>
           <img src="images/maischepfanne.png" style={{ width: "50%" }} />

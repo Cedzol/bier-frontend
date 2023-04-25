@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { BeerType } from "../../models/BeerType";
+import StepperBoxTitle from "../atoms/StepperBoxTitle";
 
 /**
  * @Step 4
@@ -46,12 +47,7 @@ export default function HopfenAuswahlBox({
     <Box>
       <Grid container>
         <Grid item xs={12} md={12} lg={12} sx={{ textAlign: "center", pb: 5 }}>
-          <Typography
-            variant="body1"
-            sx={{ fontSize: "20px", fontWeight: "bold", color: "#fff" }}
-          >
-            Hopfen-Auswahl:
-          </Typography>
+          <StepperBoxTitle title="Hopfen-Auswahl:" />
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
           <Box

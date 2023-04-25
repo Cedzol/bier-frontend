@@ -10,4 +10,8 @@ import { BeerType } from "../../models/BeerType";
  * 3.) Hopfen begeben
  */
 
+type WürzespfanneBoxType = {
+  handleNextStep: Function;
+};
+
 export default function WürzepfanneBox() {}
