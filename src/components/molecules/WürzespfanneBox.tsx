@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BeerType } from "../../models/BeerType";
 import { Box, Grid } from "@mui/material";
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
@@ -51,7 +50,7 @@ export default function WürzepfanneBox({
           <StepperBoxTitle title="Würzepfanne" />
         </Grid>
         <Grid item xs={4} md={4} lg={4} sx={{ pl: 3 }}>
-          <img src="images/maischepfanne.png" style={{ width: "50%" }} />
+          <img src="images/wurzepfanne.png" style={{ width: "50%" }} />
         </Grid>
         <Grid item xs={8} md={8} lg={8}>
           <Grid item xs={12}>
@@ -64,7 +63,7 @@ export default function WürzepfanneBox({
           </Grid>
           <Grid item xs={12}>
             <ThermometerComponent
-              text="Würzepfanne wird aufgeheizt: "
+              text="Würzepfanne wird aufgeheizt (Ziel: 70°C): "
               endTemperatur={70}
               startTemperatur={10}
               setIsDone={setHot}
@@ -73,7 +72,7 @@ export default function WürzepfanneBox({
           <Grid item xs={12}>
             {startHopfen ? (
               <LoadingProgressNormal
-                text={hopfen + " (Hopfen):"}
+                text={hopfen + " (Hopfen) wird hinzugegeben:"}
                 sx={{ color: "#f9ff7d" }}
                 delayTime={2000}
                 setSuccess={setHopfen}

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import { Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 
 type ThermometerComponentProps = {
   endTemperatur: number;
@@ -41,7 +43,11 @@ export default function ({
       setIsDone(true);
     } else {
       timerRef.current = window.setTimeout(() => {
-        setTemperatur(temperatur + 1);
+        if(startTemperatur < endTemperatur){
+          setTemperatur(temperatur + 1);
+        }else{
+          setTemperatur(temperatur -1);
+        }
       }, 100);
     }
   }, [temperatur]);
@@ -49,12 +55,24 @@ export default function ({
   return (
     <div>
       <Grid container>
-        <Grid item xs={6} md={6} lg={6}>
+        <Grid item xs={0.5} sx={{ textAlign: "left" }}>
+          <Box
+              sx={{ bgcolor: "#fcca27", height: "4vh", pr: 2, width: "2px" }}
+          />
+        </Grid>
+        <Grid item xs={2.5}>
+          {temperatur === endTemperatur ? (
+              <CheckBoxIcon sx={{ color: "#a2ff7d" }} />
+          ) : (
+              <CheckBoxOutlineBlankIcon sx={{ color: "#a2ff7d" }} />
+          )}
+        </Grid>
+        <Grid item xs={9} md={9} lg={9}>
           <Typography variant="body1" sx={{ fontSize: "16px", color: "#fff" }}>
             {text}
           </Typography>
         </Grid>
-        <Grid item xs={6} md={6} lg={6}>
+        <Grid item xs={12} md={12} lg={12}>
           <div style={styles.dial}>
             <Chart
               height={120}
@@ -70,7 +88,7 @@ export default function ({
                 yellowFrom: 50,
                 yellowTo: 90,
                 minorTicks: 5,
-                min: -10,
+                min: -50,
                 max: 300,
               }}
             />

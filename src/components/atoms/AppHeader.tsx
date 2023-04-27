@@ -14,21 +14,18 @@ export default function AppHeader({ malz, hopfen }: AppHeaderProps) {
     <Box
       sx={{
         bgcolor: "rgba(255, 255, 255, 0.3)",
-        pt: 1,
         pb: 2,
-        height: "9vh",
+        height: "4.5vh",
       }}
     >
       <Grid container>
         <Grid item xs={0.6} md={0.6} lg={0.6}>
           <img
             src="./images/img.png"
-            style={{ width: "100%", marginLeft: 2 }}
+            style={{ width: "55%", marginLeft: 6 }}
           />
         </Grid>
-        <Grid item xs={11} md={11} lg={11} sx={{ height: "9vh" }}>
-          <List sx={{ height: "9vh", padding: 0 }}>
-            <ListItem>
+        <Grid item xs={11} md={11} lg={11} sx={{alignItems: "center", justifyItems: "center", justifyContent: "center"}}>
               <Typography
                 variant="body2"
                 sx={{
@@ -36,13 +33,11 @@ export default function AppHeader({ malz, hopfen }: AppHeaderProps) {
                   fontWeight: "bold",
                   color: "#f9ff7d",
                   ml: "1vw",
-                  float: "left",
                 }}
               >
                 Malz: {malz}
               </Typography>
-            </ListItem>
-            <ListItem>
+
               <Typography
                 variant="body2"
                 sx={{
@@ -50,13 +45,11 @@ export default function AppHeader({ malz, hopfen }: AppHeaderProps) {
                   fontWeight: "bold",
                   color: "#a2ff7d",
                   ml: "1vw",
-                  float: "left",
                 }}
               >
                 Hopfen: {hopfen}
               </Typography>
-            </ListItem>
-          </List>
+
         </Grid>
       </Grid>
     </Box>

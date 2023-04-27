@@ -18,6 +18,8 @@ import SecondStepControllBox from "../molecules/SecondStepControllBox";
 import HopfenAuswahlBox from "../molecules/HopfenAuswahlBox";
 import { HopfenType } from "../../models/HopfenType";
 import WürzepfanneBox from "../molecules/WürzespfanneBox";
+import WhirlpoolBox from "../molecules/WhirlpoolBox";
+import GaerkellerBox from "../molecules/GaerkellerBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -84,19 +86,23 @@ const steps = [
   "Würze Kontrollieren",
   "Hopfen-Sorte auswählen",
   "Würzepfanne",
-  "Step6",
+    "Whirlpool",
+    "Gärkeller vorbereitung",
+  "Step8",
 ];
 
 type BeerStepperProps = {
   selectedBeerType: BeerType;
   setHopfen: Function;
+  selectedHopfenType: HopfenType | string;
 };
 
 export default function BierStepper({
   selectedBeerType,
   setHopfen,
+                                      selectedHopfenType,
 }: BeerStepperProps) {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep]:any = React.useState(0);
   const [selectedHopfen, setSelectedHopfen] = React.useState<
     HopfenType | string
   >(HopfenType.CASCADE);
@@ -113,7 +119,7 @@ export default function BierStepper({
     if (activeStep > 3) {
       setHopfen(selectedHopfen);
     }
-  }, [selectedHopfen]);
+  }, [activeStep]);
 
   return (
     <React.Fragment>
@@ -155,7 +161,7 @@ export default function BierStepper({
               lastStep,
               selectedBeerType,
               setSelectedHopfen,
-              selectedHopfen
+              selectedHopfenType
             )}
           </Card>
         </Box>
@@ -195,6 +201,10 @@ function renderSteps(
       );
     case 4:
       return <WürzepfanneBox setNextStep={setNextStep} hopfen={hopfen} />;
+    case 5:
+      return <WhirlpoolBox setNextStep={setNextStep}/>;
+    case 6:
+      return <GaerkellerBox setNextStep={setNextStep}/>;
     default:
       return <div>Not Found</div>;
   }

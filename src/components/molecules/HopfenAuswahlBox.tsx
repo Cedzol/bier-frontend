@@ -31,7 +31,6 @@ export default function HopfenAuswahlBox({
   saveSelectedHopfen,
 }: HopfenAuswahlBoxProps) {
   const [selectedHopfen, setSelectedHopfen]: any = useState(HopfenType.CASCADE);
-  const [showBeerSelection, setShowBeerSelection] = useState(true);
 
   const changeHopfenType = (newSelected: SelectChangeEvent) => {
     let select: any = newSelected.target.value;
@@ -39,7 +38,7 @@ export default function HopfenAuswahlBox({
   };
 
   const handleSaveSelectedHopfenType = () => {
-    saveSelectedHopfen(setSelectedHopfen);
+    saveSelectedHopfen(selectedHopfen);
     setNextStep();
   };
 
