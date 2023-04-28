@@ -20,6 +20,7 @@ import { HopfenType } from "../../models/HopfenType";
 import WürzepfanneBox from "../molecules/WürzespfanneBox";
 import WhirlpoolBox from "../molecules/WhirlpoolBox";
 import GaerkellerBox from "../molecules/GaerkellerBox";
+import GaerprozessStartBox from "../molecules/GaerprozessStartBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -86,9 +87,10 @@ const steps = [
   "Würze Kontrollieren",
   "Hopfen-Sorte auswählen",
   "Würzepfanne",
-    "Whirlpool",
-    "Gärkeller vorbereitung",
-  "Step8",
+  "Whirlpool",
+  "Gärkeller vorbereitung",
+  "Gärprozess starten",
+  "Step9",
 ];
 
 type BeerStepperProps = {
@@ -100,9 +102,9 @@ type BeerStepperProps = {
 export default function BierStepper({
   selectedBeerType,
   setHopfen,
-                                      selectedHopfenType,
+  selectedHopfenType,
 }: BeerStepperProps) {
-  const [activeStep, setActiveStep]:any = React.useState(0);
+  const [activeStep, setActiveStep]: any = React.useState(0);
   const [selectedHopfen, setSelectedHopfen] = React.useState<
     HopfenType | string
   >(HopfenType.CASCADE);
@@ -202,9 +204,11 @@ function renderSteps(
     case 4:
       return <WürzepfanneBox setNextStep={setNextStep} hopfen={hopfen} />;
     case 5:
-      return <WhirlpoolBox setNextStep={setNextStep}/>;
+      return <WhirlpoolBox setNextStep={setNextStep} />;
     case 6:
-      return <GaerkellerBox setNextStep={setNextStep}/>;
+      return <GaerkellerBox setNextStep={setNextStep} />;
+    case 7:
+      return <GaerprozessStartBox setNextStep={setNextStep} />;
     default:
       return <div>Not Found</div>;
   }
