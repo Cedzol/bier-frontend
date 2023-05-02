@@ -19,7 +19,6 @@ export function Brewmaster() {
     const [showBeerSelection, setShowBeerSelection] = useState(true);
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [beerTypeTitle, setBeerTypeTitle] = useState<string>("Wählen Sie die Art von Bier welche Sie brauen möchten!");
-    const [taskId, setTaskID] = useState<string>("");
 
 
     function changeBeerType(newSelected: SelectChangeEvent) {
@@ -31,27 +30,21 @@ export function Brewmaster() {
         setShowBeerSelection(false);
         if (!isRunning) {
             Service.start("SudhausUndGaerkellerID").then(() => {
-                    Service.getValue("SudhausUndGaerkellerID").then((
-                            res) => {
-                        console.log(res)
-                            setTaskID(res.data[0].id)
-                        console.log(taskId)
+                    Service.getValue("SudhausUndGaerkellerID").then((res) => {
+                                return Service.completeTask(res.data[0].id,beerType.toString() ).then(() => {
+                                })
+                            });
                         }
-                    ).then(() => {
-                        Service.completeTask(taskId,beerType.toString() ).then(() => {
-                        })
-                    })
-            })
+                    )}
 
             setIsRunning(true)
         }
-    }
+
 
     useEffect(() => {
         Service.getValue("SudhausUndGaerkellerID").then((
                 res) => {
-                setBeerTypeTitle(res.data[0].name), console.log(res),
-                    setTaskID(res.data[0].id)
+                setBeerTypeTitle(res.data[0].name), console.log(res)
             }
         )
 
