@@ -31,7 +31,7 @@ export function Brewmaster() {
         if (!isRunning) {
             Service.start("SudhausUndGaerkellerID").then(() => {
                     Service.getValue("SudhausUndGaerkellerID").then((res) => {
-                                return Service.completeTask(res.data[0].id,beerType.toString() ).then(() => {
+                                return Service.completeBeerTypeTask(res.data[0].id,beerType.toString() ).then(() => {
                                 })
                             });
                         }
