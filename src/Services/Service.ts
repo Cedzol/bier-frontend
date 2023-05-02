@@ -1,17 +1,36 @@
 import api from "../config/Api";
 
 const Service = ({
-    startSudhaus: (processID:string) => api.post(`/process-definition/key/${processID}/start`),
+    start: (processID: string) => api.post(`process-definition/key/${processID}/start`, {}),
 
-    chooseBeer: (selectedBeer: string, processID:string) => api.post(`/process-definition/key/${processID}/start`, {
+    chooseBeer: (selectedBeerType: string, processID: string) => api.post(`/process-definition/key/${processID}/complete`, {
         "variables": {
             "malz": {
-                "value": selectedBeer,
+                "value": selectedBeerType,
+            }
+        }
+    }),
+
+    storage: (storageCondition: string, processID: string) => api.post(`/process-definition/key/${processID}/start`, {
+        "variables": {
+            "lager": {
+                "value": storageCondition,
+                "type": "String"
+            }
+        },
+        "Content-Type": "application/json"
+    }),
+
+    ressource: (ressourcePath: string, processID: string) => api.post(`/process-definition/key/${processID}`, {
+        "variables": {
+            "rohstoff": {
+                "value": ressourcePath,
                 "type": "String"
             }
         }
     }),
-    chooseHop: (selectedHop: string, processID:string) => api.post(`/process-definition/key/${processID}/start`, {
+
+    chooseHop: (selectedHop: string, processID: string) => api.post(`/process-definition/key/${processID}`, {
         "variables": {
             "malz": {
                 "value": selectedHop,
@@ -20,16 +39,7 @@ const Service = ({
         }
     }),
 
-    storage:(storageCondition: string, processID:string) => api.post(`/process-definition/key/${processID}/start`, {
-        "variables": {
-            "lager": {
-                "value": storageCondition,
-                "type": "String"
-            }
-        }
-    }),
-
-    wuerzeKlar:(clear: string, processID:string) => api.post(`/process-definition/key/${processID}/start`, {
+    wuerzeKlar: (clear: string, processID: string) => api.post(`/process-definition/key/${processID}`, {
         "variables": {
             "lager": {
                 "value": clear,
@@ -38,7 +48,7 @@ const Service = ({
         }
     }),
 
-    badgeCondition:(badgeConditionValue: string, processID:string) => api.post(`/process-definition/key/${processID}/start`, {
+    badgeCondition: (badgeConditionValue: string, processID: string) => api.post(`/process-definition/key/${processID}`, {
         "variables": {
             "lager": {
                 "value": badgeConditionValue,
@@ -46,8 +56,14 @@ const Service = ({
             }
         }
     }),
+    completeTask: (taskID: string, beerType: string) => api.post(`/task/${taskID}/complete`, {
+        "variables":
+            {
+                "malz": {"value": "Lager"}
+            }
+    }),
 
-    getValue: (processID:string) => api.get(`/task?processDefinitionKey=${processID}`)
+    getValue: (processID: string) => api.get(`/task?processDefinitionKey=${processID}`)
 
 });
 

@@ -1,7 +1,7 @@
 import "./App.css";
 import { Brewmaster } from "./components/Brewmaster";
-import { createTheme, ThemeProvider } from "@mui/material";
-import {useEffect} from "react";
+import {Button, createTheme, ThemeProvider} from "@mui/material";
+import {useEffect, useState} from "react";
 import Service from "./Services/Service";
 const darkTheme = createTheme({
   palette: {
@@ -9,10 +9,6 @@ const darkTheme = createTheme({
   },
 });
 function App() {
-
-    useEffect(()=>{
-        Service.startSudhaus("SudhausUndGaerkellerID")
-    },[])
 
   return (
     <div className="App">

@@ -4,6 +4,7 @@ import axios, { AxiosInstance } from "axios";
  * Create an Axios instance for the api.
  */
 const createAPI = (): AxiosInstance => {
+    console.log(import.meta.env.VITE_BASEURL)
     return axios.create({ baseURL: import.meta.env.VITE_BASEURL });
 };
 
