@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import {Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -43,10 +43,10 @@ export default function ({
       setIsDone(true);
     } else {
       timerRef.current = window.setTimeout(() => {
-        if(startTemperatur < endTemperatur){
+        if (startTemperatur < endTemperatur) {
           setTemperatur(temperatur + 1);
-        }else{
-          setTemperatur(temperatur -1);
+        } else {
+          setTemperatur(temperatur - 1);
         }
       }, 100);
     }
@@ -57,18 +57,21 @@ export default function ({
       <Grid container>
         <Grid item xs={0.5} sx={{ textAlign: "left" }}>
           <Box
-              sx={{ bgcolor: "#fcca27", height: "4vh", pr: 2, width: "2px" }}
+            sx={{ bgcolor: "#fcca27", height: "4vh", pr: 2, width: "2px" }}
           />
         </Grid>
         <Grid item xs={2.5}>
           {temperatur === endTemperatur ? (
-              <CheckBoxIcon sx={{ color: "#a2ff7d" }} />
+            <CheckBoxIcon sx={{ color: "#a2ff7d" }} />
           ) : (
-              <CheckBoxOutlineBlankIcon sx={{ color: "#a2ff7d" }} />
+            <CheckBoxOutlineBlankIcon sx={{ color: "#a2ff7d" }} />
           )}
         </Grid>
-        <Grid item xs={9} md={9} lg={9}>
-          <Typography variant="body1" sx={{ fontSize: "16px", color: "#fff" }}>
+        <Grid item xs={9} md={9} lg={9} sx={{ textAlign: "left" }}>
+          <Typography
+            variant="body1"
+            sx={{ fontSize: "16px", color: "#fff", float: "left" }}
+          >
             {text}
           </Typography>
         </Grid>

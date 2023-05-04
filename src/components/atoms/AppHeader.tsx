@@ -20,36 +20,42 @@ export default function AppHeader({ malz, hopfen }: AppHeaderProps) {
     >
       <Grid container>
         <Grid item xs={0.6} md={0.6} lg={0.6}>
-          <img
-            src="./images/img.png"
-            style={{ width: "55%", marginLeft: 6 }}
-          />
+          <img src="./images/img.png" style={{ width: "55%", marginLeft: 6 }} />
         </Grid>
-        <Grid item xs={11} md={11} lg={11} sx={{alignItems: "center", justifyItems: "center", justifyContent: "center"}}>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  color: "#f9ff7d",
-                  ml: "1vw",
-                }}
-              >
-                Malz: {malz}
-              </Typography>
+        <Grid
+          item
+          xs={11}
+          md={11}
+          lg={11}
+          sx={{
+            alignItems: "center",
+            justifyItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#f9ff7d",
+              ml: "1vw",
+            }}
+          >
+            Malz: {malz}
+          </Typography>
 
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  color: "#a2ff7d",
-                  ml: "1vw",
-                }}
-              >
-                Hopfen: {hopfen}
-              </Typography>
-
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#a2ff7d",
+              ml: "1vw",
+            }}
+          >
+            Hopfen: {hopfen}
+          </Typography>
         </Grid>
       </Grid>
     </Box>

@@ -21,6 +21,8 @@ import WürzepfanneBox from "../molecules/WürzespfanneBox";
 import WhirlpoolBox from "../molecules/WhirlpoolBox";
 import GaerkellerBox from "../molecules/GaerkellerBox";
 import GaerprozessStartBox from "../molecules/GaerprozessStartBox";
+import SecondGaerkellerBox from "../molecules/SecondGaerkellerBox";
+import LaborBox from "../molecules/LaborBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -90,6 +92,8 @@ const steps = [
   "Whirlpool",
   "Gärkeller vorbereitung",
   "Gärprozess starten",
+  "Gärprozess",
+  "Labor",
   "Step9",
 ];
 
@@ -209,6 +213,10 @@ function renderSteps(
       return <GaerkellerBox setNextStep={setNextStep} />;
     case 7:
       return <GaerprozessStartBox setNextStep={setNextStep} />;
+    case 8:
+      return <SecondGaerkellerBox setNextStep={setNextStep} />;
+    case 9:
+      return <LaborBox setNextStep={setNextStep} />;
     default:
       return <div>Not Found</div>;
   }
