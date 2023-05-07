@@ -41,7 +41,7 @@ export default function GaerkellerBox({ setNextStep }: GaerkellerBoxType) {
         <Grid item xs={8} md={8} lg={8}>
           <Grid item xs={12}>
             <ThermometerComponent
-              text="Würzepfanne wird abgekühlt (Ziel: 9°C): "
+              text="Würze wird abgekühlt (Ziel: 9°C): "
               endTemperatur={9}
               startTemperatur={90}
               setIsDone={setCold}

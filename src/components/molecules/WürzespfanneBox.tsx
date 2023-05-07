@@ -20,6 +20,9 @@ type WürzespfanneBoxType = {
 };
 
 export default function WürzepfanneBox({
+
+
+
   setNextStep,
   hopfen,
 }: WürzespfanneBoxType) {

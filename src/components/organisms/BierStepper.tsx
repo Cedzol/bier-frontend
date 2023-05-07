@@ -23,6 +23,7 @@ import GaerkellerBox from "../molecules/GaerkellerBox";
 import GaerprozessStartBox from "../molecules/GaerprozessStartBox";
 import SecondGaerkellerBox from "../molecules/SecondGaerkellerBox";
 import LaborBox from "../molecules/LaborBox";
+import LagerKellerVorbereitungBox from "../molecules/LagerKellerVorbereitungBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -94,6 +95,7 @@ const steps = [
   "Gärprozess starten",
   "Gärprozess",
   "Labor",
+    "Lagerkeller vorbereitung",
   "Step9",
 ];
 
@@ -217,6 +219,8 @@ function renderSteps(
       return <SecondGaerkellerBox setNextStep={setNextStep} />;
     case 9:
       return <LaborBox setNextStep={setNextStep} />;
+    case 10:
+      return <LagerKellerVorbereitungBox setNextStep={setNextStep}/>;
     default:
       return <div>Not Found</div>;
   }
