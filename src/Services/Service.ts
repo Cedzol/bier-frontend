@@ -6,7 +6,7 @@ const Service = ({
     completeBeerTypeTask: (taskID: string, userInput: string) => api.post(`/task/${taskID}/complete`, {
         "variables":
             {
-               "malz": {"value": userInput}
+               malz: {"value": userInput}
             }
     }),
 

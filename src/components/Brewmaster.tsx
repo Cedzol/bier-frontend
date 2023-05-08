@@ -141,7 +141,7 @@ export function Brewmaster() {
                     overflow: "hidden",
                 }}
             >
-                <MainPage selectedBeerType={beerType}/>
+                <MainPage selectedBeerType={beerType} setRepeat={setShowBeerSelection}/>
             </Box>
         )}
     </Box></>;

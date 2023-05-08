@@ -24,6 +24,8 @@ import GaerprozessStartBox from "../molecules/GaerprozessStartBox";
 import SecondGaerkellerBox from "../molecules/SecondGaerkellerBox";
 import LaborBox from "../molecules/LaborBox";
 import LagerKellerVorbereitungBox from "../molecules/LagerKellerVorbereitungBox";
+import LagerKellerBox from "../molecules/LagerKellerBox";
+import EndBox from "../molecules/EndBox";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -96,19 +98,22 @@ const steps = [
   "Gärprozess",
   "Labor",
     "Lagerkeller vorbereitung",
-  "Step9",
+    "Lagerkeller",
+  "Fertigstellung",
 ];
 
 type BeerStepperProps = {
   selectedBeerType: BeerType;
   setHopfen: Function;
   selectedHopfenType: HopfenType | string;
+  resetData : Function;
 };
 
 export default function BierStepper({
   selectedBeerType,
   setHopfen,
   selectedHopfenType,
+    resetData
 }: BeerStepperProps) {
   const [activeStep, setActiveStep]: any = React.useState(0);
   const [selectedHopfen, setSelectedHopfen] = React.useState<
@@ -169,7 +174,8 @@ export default function BierStepper({
               lastStep,
               selectedBeerType,
               setSelectedHopfen,
-              selectedHopfenType
+              selectedHopfenType,
+                resetData,
             )}
           </Card>
         </Box>
@@ -184,7 +190,8 @@ function renderSteps(
   setLastStep: Function,
   selectedBeerType: BeerType,
   setSelectedHopfen: Function,
-  hopfen: HopfenType | string
+  hopfen: HopfenType | string,
+  resetData: Function,
 ) {
   switch (step) {
     case 0:
@@ -221,6 +228,8 @@ function renderSteps(
       return <LaborBox setNextStep={setNextStep} />;
     case 10:
       return <LagerKellerVorbereitungBox setNextStep={setNextStep}/>;
+    case 11: return <LagerKellerBox setNextStep={setNextStep}/>;
+    case 12: return <EndBox resetData={resetData}/>;
     default:
       return <div>Not Found</div>;
   }
