@@ -106,14 +106,12 @@ type BeerStepperProps = {
   selectedBeerType: BeerType;
   setHopfen: Function;
   selectedHopfenType: HopfenType | string;
-  resetData : Function;
 };
 
 export default function BierStepper({
   selectedBeerType,
   setHopfen,
   selectedHopfenType,
-    resetData
 }: BeerStepperProps) {
   const [activeStep, setActiveStep]: any = React.useState(0);
   const [selectedHopfen, setSelectedHopfen] = React.useState<
@@ -175,7 +173,6 @@ export default function BierStepper({
               selectedBeerType,
               setSelectedHopfen,
               selectedHopfenType,
-                resetData,
             )}
           </Card>
         </Box>
@@ -191,7 +188,6 @@ function renderSteps(
   selectedBeerType: BeerType,
   setSelectedHopfen: Function,
   hopfen: HopfenType | string,
-  resetData: Function,
 ) {
   switch (step) {
     case 0:
@@ -229,7 +225,7 @@ function renderSteps(
     case 10:
       return <LagerKellerVorbereitungBox setNextStep={setNextStep}/>;
     case 11: return <LagerKellerBox setNextStep={setNextStep}/>;
-    case 12: return <EndBox resetData={resetData}/>;
+    case 12: return <EndBox/>;
     default:
       return <div>Not Found</div>;
   }

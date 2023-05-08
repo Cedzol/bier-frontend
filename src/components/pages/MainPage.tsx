@@ -9,12 +9,11 @@ import {HopfenType} from "../../models/HopfenType";
 
 type MainPageProcessProps = {
   selectedBeerType: BeerType | any | string;
-  setRepeat: Function;
+
 };
 
-export default function MainPage({ selectedBeerType, setRepeat }: MainPageProcessProps) {
+export default function MainPage({ selectedBeerType}: MainPageProcessProps) {
   const [hopfen, setHopfen] = useState<HopfenType | string>("");
-  const timerRef = React.useRef<number>();
   const [malzData, setMalzData] = useState<DiagrammType[]>([
     {
       name: "Weizen",
@@ -103,85 +102,6 @@ export default function MainPage({ selectedBeerType, setRepeat }: MainPageProces
     }
   }, [hopfen])
 
-  const resetData = () => {
-    if(selectedBeerType === BeerType.DUNKEL){
-      setMalzData([
-        {
-          name: "Weizen",
-
-          value: 89,
-        },
-        {
-          name: "Dunkel",
-
-          value: 95,
-        },
-        {
-          name: "Lager",
-
-          value: 64,
-        },
-      ]);
-
-    }else if(selectedBeerType === BeerType.WEIZEN){
-      setMalzData([
-        {
-          name: "Weizen",
-
-          value: 100,
-        },
-        {
-          name: "Dunkel",
-
-          value: 75,
-        },
-        {
-          name: "Lager",
-
-          value: 64,
-        },
-      ]);
-
-    }else if(selectedBeerType === BeerType.LAGER){
-      setMalzData([
-        {
-          name: "Weizen",
-
-          value: 89,
-        },
-        {
-          name: "Dunkel",
-
-          value: 75,
-        },
-        {
-          name: "Lager",
-
-          value: 94,
-        },
-      ]);
-    }
-    setHopfenData([
-      {
-        name: "Herkules",
-
-        value: 73,
-      },
-      {
-        name: "Cascade",
-
-        value: 90,
-      },
-      {
-        name: "Mosaik",
-
-        value: 44,
-      },
-    ]);
-    timerRef.current = window.setTimeout(() => {
-      setRepeat(true);
-    }, 4000);
-  }
 
   return (
     <Box
@@ -201,7 +121,6 @@ export default function MainPage({ selectedBeerType, setRepeat }: MainPageProces
             selectedBeerType={selectedBeerType}
             setHopfen={setHopfen}
             selectedHopfenType={hopfen}
-            resetData={resetData}
           />
         </Grid>
         <Grid item md={4} sx={{ height: "30vh" }}>

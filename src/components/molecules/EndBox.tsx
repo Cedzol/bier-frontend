@@ -11,11 +11,9 @@ import Typography from "@mui/material/Typography";
  */
 
 
-type EndBoxProps = {
-    resetData: Function;
-}
 
-export default function EndBox({resetData}: EndBoxProps){
+
+export default function EndBox(){
     return(
         <Box>
             <Grid container>
@@ -27,14 +25,6 @@ export default function EndBox({resetData}: EndBoxProps){
                 </Grid>
                 <Grid item xs={10} md={10} lg={10} sx={{textAlign: "center"}}>
                     <Typography variant="body1" sx={{color: "#fff", fontSize: 16, fontWeight: 400, width: "80%"}}>Ihr Bier ist fertig gebraut und abgefüllt. Geniessen Sie es!! Ihr Rezept bleibt bei uns natürlich geheim.</Typography>
-                    <Button onClick={() => resetData}   sx={{
-                        bgcolor: "#6dad53",
-                        color: "#fff",
-                        width: "40%",
-                        ml: "20%",
-                        mr: "40%",
-                        mt: 5
-                    }}>Noch ein Bier brauen?</Button>
                 </Grid>
             </Grid>
         </Box>

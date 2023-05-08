@@ -134,6 +134,9 @@ export function Brewmaster() {
             </div>
         ) : (
             <Box
+
+
+
                 sx={{
                     height: "100vh",
                     width: "100vw",
@@ -141,7 +144,7 @@ export function Brewmaster() {
                     overflow: "hidden",
                 }}
             >
-                <MainPage selectedBeerType={beerType} setRepeat={setShowBeerSelection}/>
+                <MainPage selectedBeerType={beerType}/>
             </Box>
         )}
     </Box></>;
