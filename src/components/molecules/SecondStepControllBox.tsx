@@ -3,6 +3,7 @@ import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
 import UntersuchungsProgress from "../atoms/UntersuchungsProgress";
+import Service from "../../Services/Service";
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
 
 /**
@@ -39,6 +40,9 @@ export default function SecondStepControllBox({
   React.useEffect(() => {
     if (isClear) {
       setWirdAbgepumt(true);
+      Service.getValue("SudhausUndGaerkellerID").then((res:any) => {
+        return Service.completeBeerClear(res.data[0].id,"Klar")
+      })
     } else if (controll !== 1) {
       timerRef.current = window.setTimeout(() => {
         setLastStep();

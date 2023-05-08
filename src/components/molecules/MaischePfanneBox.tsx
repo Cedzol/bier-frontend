@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
 
 import Service from "../../Services/Service";
+import {Simulate} from "react-dom/test-utils";
+import waiting = Simulate.waiting;
 
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
 
@@ -36,16 +38,6 @@ export default function MaischePfanneBox({
             }, 2000);
         }
     }, [water]);
-
-    useEffect(() => {
-        Service.getValue("BestandskontrolleID").then((res) => {
-            console.log(res)
-            //TODO id wird nicht korrekt sein
-            return Service.completeStorageTask(res.data[0].id, "Voll").then(() => {
-            })
-        });
-    },[LoadingProgressNormal])
-
 
 return (
     <Box>

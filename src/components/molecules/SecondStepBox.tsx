@@ -48,7 +48,7 @@ export default function SecondStepBox({ setNextStep }: SecondStepType) {
           </Grid>
           <Grid item xs={12}>
             <LoadingProgressNormal
-              text="Maische zu Würza gefiltert: "
+              text="Maische zu Würze gefiltert: "
               sx={{ color: "#f9ff7d" }}
               delayTime={4500}
               setSuccess={setFilter}

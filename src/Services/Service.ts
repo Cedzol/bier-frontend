@@ -6,7 +6,7 @@ const Service = ({
     completeBeerTypeTask: (taskID: string, userInput: string) => api.post(`/task/${taskID}/complete`, {
         "variables":
             {
-               malz: {"value": userInput}
+                malz: {"value": userInput}
             }
     }),
 
@@ -17,8 +17,28 @@ const Service = ({
             }
     }),
 
-    getValue: (processID: string) => api.get(`/task?processDefinitionKey=${processID}`)
+    getValue: (processID: string) => {
+        return api.get(`/task?processDefinitionKey=${processID}`)
+    },
 
-});
+    completePath: (taskID: string, ingredienceType: string) => api.post(`/task/${taskID}/complete`, {
+        "variables":
+            {
+                "rohstoff": {"value": ingredienceType}
+            }
+    }),
+    completeBeerClear: (taskID:string, klar: string) => api.post(`/task/${taskID}/complete`, {
+        "variables":
+            {
+                "klar": {"value": klar}
+            }
+    }),
+    completeHopTypeTask: (taskID:string, hop: string) => api.post(`/task/${taskID}/complete`, {
+        "variables":
+            {
+                "hopfen": {"value": hop}
+            }
+    })
+})
 
 export default Service;

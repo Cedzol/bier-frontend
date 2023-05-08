@@ -13,6 +13,7 @@ import {
 import Typography from "@mui/material/Typography";
 import { BeerType } from "../../models/BeerType";
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
+import Service from "../../Services/Service";
 
 /**
  * @Step 4
@@ -31,13 +32,29 @@ export default function HopfenAuswahlBox({
   saveSelectedHopfen,
 }: HopfenAuswahlBoxProps) {
   const [selectedHopfen, setSelectedHopfen]: any = useState(HopfenType.CASCADE);
+  const [showBeerSelection, setShowBeerSelection] = useState(true);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [hopType, setHopType]: any = useState(HopfenType.CASCADE);
 
   const changeHopfenType = (newSelected: SelectChangeEvent) => {
     let select: any = newSelected.target.value;
+    setHopType(select)
     setSelectedHopfen(select);
   };
 
   const handleSaveSelectedHopfenType = () => {
+    if (!isRunning) {
+      Service.getValue("SudhausUndGaerkellerID").then((res:any) => {
+        return Service.completeHopTypeTask(res.data[0].id,hopType.toString()).then(() => {
+          Service.getValue("BestandskontrolleID").then((lager:any) => {
+            return Service.completeStorageTask(lager.data[0].id, "Voll").then(() => {
+              Service.getValue("SudhausUndGaerkellerID").then((typ:any) => {
+                return Service.completePath(typ.data[0].id,"Hopfen")
+              })
+            })
+          });})
+    })}
+    setIsRunning(true);
     saveSelectedHopfen(selectedHopfen);
     setNextStep();
   };

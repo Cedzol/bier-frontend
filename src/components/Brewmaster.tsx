@@ -26,13 +26,19 @@ export function Brewmaster() {
         setBeerType(select);
     }
 
-    function startProccess() {
+    function startProcess() {
         setShowBeerSelection(false);
         if (!isRunning) {
             Service.start("SudhausUndGaerkellerID").then(() => {
-                    Service.getValue("SudhausUndGaerkellerID").then((res) => {
+                    Service.getValue("SudhausUndGaerkellerID").then((res:any) => {
                                 return Service.completeBeerTypeTask(res.data[0].id,beerType.toString() ).then(() => {
-                                })
+                                    Service.getValue("BestandskontrolleID").then((lager:any) => {
+                                        return Service.completeStorageTask(lager.data[0].id, "Voll").then(() => {
+                                            Service.getValue("SudhausUndGaerkellerID").then((typ:any) => {
+                                                return Service.completePath(typ.data[0].id,"Malz")
+                                            })
+                                        })
+                                    });})
                             });
                         }
                     )}
@@ -43,8 +49,8 @@ export function Brewmaster() {
 
     useEffect(() => {
         Service.getValue("SudhausUndGaerkellerID").then((
-                res) => {
-                setBeerTypeTitle(res.data[0].name), console.log(res)
+                res:any) => {
+                setBeerTypeTitle(res.data[0].name)
             }
         )
 
@@ -112,7 +118,7 @@ export function Brewmaster() {
                         </FormControl>
                         <Button
 
-                            onClick={startProccess}
+                            onClick={startProcess}
                             disabled={
                                 beerType !== BeerType.DUNKEL &&
                                 beerType !== BeerType.LAGER &&
