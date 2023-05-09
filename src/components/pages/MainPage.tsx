@@ -128,7 +128,7 @@ export default function MainPage({ selectedBeerType }: MainPageProcessProps) {
         <Grid item md={4} sx={{ height: "30vh" }}>
           <LagerDiagramm malzData={malzData} hopfenData={hopfenData} />
         </Grid>
-        <Grid item md={8} sx={{ height: "30vh", pl: "15vw" }}>
+        <Grid item md={8} sx={{ height: "30vh", pl: "8vw", pt: 6 }}>
           <RezeptNoteBox malz={selectedBeerType} hopfen={hopfen} />
         </Grid>
       </Grid>

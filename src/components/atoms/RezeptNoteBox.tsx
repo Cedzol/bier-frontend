@@ -33,7 +33,7 @@ export default function RezeptNoteBox({ malz, hopfen }: RezeptNoteBoxProps) {
           <Grid xs={8} md={8}>
             <Typography
               variant="body1"
-              sx={{ fontSize: "16px", fontWeight: 400, color: "#fff" }}
+              sx={{ fontSize: "16px", fontWeight: 400, color: "#f9ff7d" }}
             >
               {malz}
             </Typography>
@@ -49,7 +49,7 @@ export default function RezeptNoteBox({ malz, hopfen }: RezeptNoteBoxProps) {
           <Grid xs={8} md={8} sx={{ pt: 2 }}>
             <Typography
               variant="body1"
-              sx={{ fontSize: "16px", fontWeight: 400, color: "#fff" }}
+              sx={{ fontSize: "16px", fontWeight: 400, color: "#a2ff7d" }}
             >
               {hopfen}
             </Typography>

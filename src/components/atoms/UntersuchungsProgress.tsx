@@ -38,8 +38,8 @@ export default function UntersuchungsProgress({
 
   React.useEffect(() => {
     if (query === "success") {
-      const randomResult = Math.floor(Math.random() * 100);
-      if (randomResult === 1 || randomResult === 2) {
+      const randomResult = Math.floor(Math.random() * 10000);
+      if (randomResult === 1) {
         setIsSucess(false);
         setSuccess(false);
       } else {
