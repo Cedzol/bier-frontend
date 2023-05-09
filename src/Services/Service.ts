@@ -6,7 +6,7 @@ const Service = ({
     completeBeerTypeTask: (taskID: string, userInput: string) => api.post(`/task/${taskID}/complete`, {
         "variables":
             {
-                malz: {"value": userInput}
+                "malz": {"value": userInput}
             }
     }),
 
@@ -38,7 +38,14 @@ const Service = ({
             {
                 "hopfen": {"value": hop}
             }
-    })
+    }),
+    completeTestResult: (taskID:string, result: string) => api.post(`/task/${taskID}/complete`, {
+        "variables":
+            {
+                "labor": {"value": result}
+            }
+    }),
+    completeLabor:(taskID:string)=>api.post(`/task/${taskID}/complete`, {}),
 })
 
 export default Service;
