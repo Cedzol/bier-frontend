@@ -3,6 +3,7 @@ import {Box, Grid} from "@mui/material";
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
 import UntersuchungsProgress from "../atoms/UntersuchungsProgress";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
+import Service from "../../Services/Service";
 
 /**
  * @Step 11
@@ -26,6 +27,9 @@ export default function LagerKellerVorbereitungBox({
   const timerRef = React.useRef<number>();
 
   React.useEffect(() => {
+    Service.getValue("SudhausUndGaerkellerID").then((typ:any) => {
+      return Service.completeTestResult(typ.data[0].id,"Freigeben")
+    })
     if(state !== 1 && !isAnalaysed){
       alert("Die Probe war schlecht!!!")
     }else if(state !== 1 && isAnalaysed){

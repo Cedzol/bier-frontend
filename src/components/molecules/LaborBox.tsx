@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Grid } from "@mui/material";
 import StepperBoxTitle from "../atoms/StepperBoxTitle";
 import LoadingProgressNormal from "../atoms/LoadingProgressNormal";
+import Service from "../../Services/Service";
 
 /**
  * @Step 10
@@ -20,11 +21,12 @@ export default function LaborBox({ setNextStep }: LaborBoxProps) {
   const timerRef = React.useRef<number>();
 
   React.useEffect(() => {
-    if (sendedResults) {
+      Service.getValue("ProbenTestenID").then((typ:any) => {
+        return Service.completeLabor(typ.data[0].id)
+      })
       timerRef.current = window.setTimeout(() => {
         setNextStep();
       }, 3000);
-    }
   }, [sendedResults]);
 
   return (
